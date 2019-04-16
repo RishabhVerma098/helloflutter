@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import './helper/helper.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "Exploring Widgets",
-    debugShowCheckedModeBanner: false,
-    home: Helper(),
-  ));
+      title: "Exploring Widgets",
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: getListTitle(),
+      )));
+}
+
+Widget getListTitle() {
+  var listView = ListView(
+    children: <Widget>[
+      ListTile(
+        leading: Icon(Icons.landscape),
+        trailing: Icon(Icons.laptop_chromebook),
+        title: Text("Rishabh"),
+        subtitle: Text("This is my name"),
+      )
+    ],
+  );
+  return listView;
 }
