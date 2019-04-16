@@ -5,20 +5,36 @@ void main() {
       title: "Exploring Widgets",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: getListTitle(),
+        body: getListView(),
       )));
 }
 
-Widget getListTitle() {
-  var listView = ListView(
-    children: <Widget>[
-      ListTile(
-        leading: Icon(Icons.landscape),
-        trailing: Icon(Icons.laptop_chromebook),
-        title: Text("Rishabh"),
-        subtitle: Text("This is my name"),
-      )
-    ],
-  );
+List<String> getListElements() {
+  var items = List.generate(1000, (x) => "Item ${x}");
+  return items;
+}
+
+Widget getListView() {
+  var ListItems = getListElements();
+  var listView = ListView.builder(itemBuilder: (context, index) {
+    return ListTile(
+      title: Text(ListItems[index]),
+      onTap: () {
+        dialoge(context, ListItems[index]);
+      },
+    );
+  });
   return listView;
+}
+
+void dialoge(BuildContext context, String item) {
+  var alertDialog = AlertDialog(
+    title: Text("You pressed ${item}"),
+    content: Text("good job"),
+  );
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alertDialog;
+      });
 }
